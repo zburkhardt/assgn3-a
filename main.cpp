@@ -1,59 +1,113 @@
-/* INSERT HEADER INFO
-INSERT HEADER INFO
-INSERT HEADER INFO
-INSERT HEADER INFO */
+/*
+    COPYRIGHT (C) 2018 Zach Burkhardt (zmb14) All rights reserved.
+    CSI Assignment 2-A
+    Author. Zach Burkhardt
+            zmb14@zips.uakron.edu
+    Version. 1.00 09.24.2018
+    Purpose: This program will check class sizes to verify if they pass fire code requirements.
+*/
 
-#include <iostream> // for input-output stream operations
-#include <iomanip> // for providing parametric manipulators operations
-#include <limits> // for providing elements with the characteristics of arithmetic types
-using std::cout; // qualifies cout element in standard namespace; for displaying console output
-using std::cin; // qualifies cin element in standard namespace; for accepting input
-using std::endl; // qualifies endl element in standard namespace; for ending line
+#include <iostream>
+#include <iomanip>
+#include <limits>
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main()
 {
-    bool loopFlag = false;
+    bool programLoopFlag = false; // Program repeat flag
 
-    do // post test loop
+    do
     {
         int width = 0, height = 0;
-
-        cout << "Enter the width of the rectangle: "; // output stream a message
-        cin >> width; //input stream a variable
-        cout << "Enter the height of the rectangle: ";
-        cin >> height;
-        cout << endl;
-
-        // Do not accept a number less than 2 for the
-        // starting size of the population
-        if ((cin.fail()) || width < 2) // decision construct tests 2 conditions
-        {
-            cout << "The starting number of organisms " // output stream a message
-                 << "must be a valid number that is at least 2.\n"; // continues message on same line
-            cin.clear(); // clear error flag for cin
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignores input in buffer until the line break
-        }
-        else // runs if above "if" statement is false
-        {
-            for (int heightCounter = 0; heightCounter < height; ++heightCounter) // change Boolean value to end this loop (good input!)
-            {
-                for (int widthCounter = 0; widthCounter < width; ++widthCounter) // change Boolean value to end this loop (good input!)
-                {
-                    cout << "X";
-                }
-                cout << endl;
-            }
-        }
+        bool inputCheck = true;
 
         do
         {
+            // User enters width
+            cout << "Enter the width of the rectangle (1-75): ";
+            cin >> width;
             cout << endl;
+
+            // Check if width input is valid and that input is > 0 and <= 75
+            if ((cin.fail()) || width <= 0 || width > 75)
+            {
+                cout << "*** The input is invalid. Please try again. ***" << endl;
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                inputCheck = true;
+            }
+            else
+            {
+                inputCheck = false;
+            }
+        } while (inputCheck);
+
+
+        do
+        {
+            // User enters height
+            cout << "Enter the height of the rectangle (1-75): ";
+            cin >> height;
+            cout << endl;
+
+            // Check if width input is valid and that input is > 0 and <= 75
+            if ((cin.fail()) || width <= 0 || width > 75)
+            {
+                cout << "*** The input is invalid. Please try again. ***" << endl;
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                inputCheck = true;
+            }
+            else
+            {
+                inputCheck = false;
+            }
+        } while (inputCheck);
+
+
+        // Outputs the rectangle
+        for (int heightCounter = 0; heightCounter < height; ++heightCounter)
+        {
+            for (int widthCounter = 0; widthCounter < width; ++widthCounter)
+            {
+                cout << "X";
+            }
+            cout << endl;
+        }
+
+
+        // Checks if user wants to run program again
+        do
+        {
             cout << "Would you like to create another rectangle? (Y/N): ";
-            cin >> loopFlag;
-        } while ();
-    } while (loopFlag); // loop control expression is a Boolean value
+            char repeat;
+            cin >> repeat;
+            cout << endl;
+
+            // Checks if input is valid
+            if ((repeat == 'y') || (repeat == 'Y'))
+            {
+                programLoopFlag = true;
+                inputCheck = false;
+            }
+            else if ((repeat == 'n') || (repeat == 'N'))
+            {
+                programLoopFlag = false;
+                inputCheck = false;
+            }
+            else
+            {
+                cout << "*** The input is invalid. Please try again. ***" << endl;
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                inputCheck = true;
+            }
+        } while (inputCheck);
+
+    } while (programLoopFlag);
 
     return 0;
 }
