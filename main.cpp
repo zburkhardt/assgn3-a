@@ -68,7 +68,7 @@ int main()
         } while (inputInvalid);
 
 
-        // Outputs the rectangle to console
+        // Prints out rectangle to console
         for (int heightCounter = 0; heightCounter < height; ++heightCounter)
         {
             for (int widthCounter = 0; widthCounter < width; ++widthCounter)
@@ -77,6 +77,7 @@ int main()
             }
             cout << endl;
         }
+        cout << endl;
 
 
         // Checks if user wants to run program again
