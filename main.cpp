@@ -1,10 +1,10 @@
 /*
     COPYRIGHT (C) 2018 Zach Burkhardt (zmb14) All rights reserved.
-    CSI Assignment 2-A
+    CSI Assignment 3-A
     Author. Zach Burkhardt
             zmb14@zips.uakron.edu
     Version. 1.00 09.24.2018
-    Purpose: This program will check class sizes to verify if they pass fire code requirements.
+    Purpose: This program will display a rectangle based on user-inputted dimensions.
 */
 
 #include <iostream>
@@ -17,12 +17,12 @@ using std::endl;
 
 int main()
 {
-    bool programLoopFlag = false; // Program repeat flag
+    bool programLoop = false; // Flag to run program again
 
     do
     {
         int width = 0, height = 0;
-        bool inputCheck = true;
+        bool inputInvalid = true;
 
         do
         {
@@ -37,13 +37,13 @@ int main()
                 cout << "*** The input is invalid. Please try again. ***" << endl;
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                inputCheck = true;
+                inputInvalid = true;
             }
             else
             {
-                inputCheck = false;
+                inputInvalid = false;
             }
-        } while (inputCheck);
+        } while (inputInvalid);
 
 
         do
@@ -53,22 +53,22 @@ int main()
             cin >> height;
             cout << endl;
 
-            // Check if width input is valid and that input is > 0 and <= 75
-            if ((cin.fail()) || width <= 0 || width > 75)
+            // Check if height input is valid and that input is > 0 and <= 75
+            if ((cin.fail()) || height <= 0 || height > 75)
             {
                 cout << "*** The input is invalid. Please try again. ***" << endl;
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                inputCheck = true;
+                inputInvalid = true;
             }
             else
             {
-                inputCheck = false;
+                inputInvalid = false;
             }
-        } while (inputCheck);
+        } while (inputInvalid);
 
 
-        // Outputs the rectangle
+        // Outputs the rectangle to console
         for (int heightCounter = 0; heightCounter < height; ++heightCounter)
         {
             for (int widthCounter = 0; widthCounter < width; ++widthCounter)
@@ -88,26 +88,26 @@ int main()
             cout << endl;
 
             // Checks if input is valid
-            if ((repeat == 'y') || (repeat == 'Y'))
+            if ((repeat == 'Y') || (repeat == 'y'))
             {
-                programLoopFlag = true;
-                inputCheck = false;
+                programLoop = true;
+                inputInvalid = false;
             }
-            else if ((repeat == 'n') || (repeat == 'N'))
+            else if ((repeat == 'N') || (repeat == 'n'))
             {
-                programLoopFlag = false;
-                inputCheck = false;
+                programLoop = false;
+                inputInvalid = false;
             }
             else
             {
                 cout << "*** The input is invalid. Please try again. ***" << endl;
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                inputCheck = true;
+                inputInvalid = true;
             }
-        } while (inputCheck);
+        } while (inputInvalid);
 
-    } while (programLoopFlag);
+    } while (programLoop);
 
     return 0;
 }
